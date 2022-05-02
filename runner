@@ -92,7 +92,7 @@ if args.prepare:
         "utils/_template.py", "r"
     ) as _template:
         template.write(f"# Problem number {args.prepare[0]}.\n#\n# ")
-        for count, paragraph in enumerate(paragraphs):
+        for paragraph in paragraphs:
             counter = 2
             for word in paragraph.split(" "):
                 if counter + len(word) > 88:
@@ -101,12 +101,12 @@ if args.prepare:
                 else:
                     counter += len(word)
                     template.write(word)
-                    if counter < 88:
+                    if counter < 88 and word != paragraph.split(" ")[-1]:
                         template.write(" ")
                         counter += 1
             template.write("\n")
-            if not count == len(paragraphs) - 1:
+            if not paragraph == paragraphs[-1]:
                 template.write("#\n# ")
 
         for line in _template.readlines():
-            template.write(line.replace("# type: ignore", ""))
+            template.write(line.replace("# type: ignore", "").rstrip() + "\n")
