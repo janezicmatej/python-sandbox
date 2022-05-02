@@ -8,6 +8,7 @@
 from fwk.problem import Problem
 from utils.primes import prime_factors
 from collections import defaultdict
+from math import prod
 
 
 class Main(Problem):
@@ -19,8 +20,4 @@ class Main(Problem):
                 if max_prime_factors[prime_factor] < power:
                     max_prime_factors[prime_factor] = power
 
-        solution_number = 1
-        for prime_factor, power in max_prime_factors.items():
-            solution_number *= prime_factor**power
-
-        return solution_number
+        return prod([prime**power for prime, power in max_prime_factors.items()])
