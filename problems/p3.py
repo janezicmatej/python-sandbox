@@ -10,4 +10,4 @@ from utils.primes import prime_factors
 class Main(Problem):
     @classmethod
     def solution(cls) -> int:
-        return prime_factors(600851475143)[-1][0]
+        return max(prime_factors(600851475143))

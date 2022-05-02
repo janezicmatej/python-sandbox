@@ -13,15 +13,24 @@ def primes_to(n: int) -> list[int]:
     return list(primes)
 
 
-def prime_factors(n: int) -> list[tuple[int, int]]:
-    primes = primes_to(int(math.sqrt(n) + 1))
-    p_factors = []
+def is_prime(n: int) -> bool:
+    return primes_to(n)[-1] == n
+
+
+def prime_factors(n: int) -> dict[int, int]:
+    primes = primes_to(n)
+    if primes[-1] == n:
+        return {n: 1}
+    p_factors = {}
+    divided_n = n
     for prime in primes:
-        if not n % prime:
+        if divided_n == 1 or prime**2 > n:
+            break
+        if not divided_n % prime:
             count = 0
-            while not n % prime:
+            while not divided_n % prime:
                 count += 1
-                n //= prime
-            p_factors.append((prime, count))
+                divided_n //= prime
+            p_factors[prime] = count
 
     return p_factors
