@@ -25,3 +25,5 @@ class Problem(ABC):
             print(f"The result [{result}] was calculated in {timed}ms time.")
         else:
             print(f"{result}, {timed}ms")
+        with open("solution.txt", "w") as solution:
+            solution.write(f"{result}")
