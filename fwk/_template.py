@@ -1,4 +1,4 @@
-from utils.problem import Problem
+from fwk.problem import Problem
 
 
 class Main(Problem):

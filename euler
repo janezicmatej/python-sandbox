@@ -14,29 +14,7 @@ parser.add_argument(
     required=False,
     nargs=1,
     action="store",
-    help="problem number",
-)
-
-parser.add_argument(
-    "-e",
-    "--explicit",
-    dest="explicit",
-    type=int,
-    required=False,
-    nargs=1,
-    action="store",
-    help="explicit file to solve",
-)
-
-parser.add_argument(
-    "-i",
-    "--input",
-    dest="input",
-    type=str,
-    required=False,
-    nargs=1,
-    action="store",
-    help="input file",
+    help="solve problem with given number",
 )
 
 parser.add_argument(
@@ -56,19 +34,15 @@ parser.add_argument(
     required=False,
     nargs=1,
     action="store",
-    help="problem number",
+    help="prepare file for given problem number",
 )
 
 args = parser.parse_args()
 
 if args.solve:
     file = glob.glob(f"problems/p{args.solve[0]}.py")
-    if len(file) > 1 and not args.explicit:
-        parser.error(
-            "There is multiple files for this problem, please use --explicit flag to explicitly name the required file"
-        )
-    elif args.explicit:
-        file = glob.glob(f"problems/p{args.explicit[0]}.py")
+    if len(file) > 1:
+        parser.error("Multiple files found. Exiting...")
 
     problem = __import__(
         file[0].split(".")[0].replace("/", "."), fromlist=[None]  # type: ignore
@@ -89,7 +63,7 @@ if args.prepare:
     paragraphs = re.findall(r"<p.*?>(.+)</p>", problem.group(1))
 
     with open(f"problems/p{args.prepare[0]}.py", "w") as template, open(
-        "utils/_template.py", "r"
+        "fwk/_template.py", "r"
     ) as _template:
         template.write(f"# Problem number {args.prepare[0]}.\n#\n# ")
         for paragraph in paragraphs:

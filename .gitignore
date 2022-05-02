@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # my ignores
-test.py
+test.*
 solution.txt
