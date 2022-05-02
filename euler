@@ -3,6 +3,7 @@ import argparse
 import glob
 import re
 import requests
+import webbrowser
 
 
 parser = argparse.ArgumentParser(description="project euler runner")
@@ -37,6 +38,17 @@ parser.add_argument(
     help="prepare file for given problem number",
 )
 
+parser.add_argument(
+    "-o",
+    "--open",
+    dest="open",
+    type=int,
+    action="store",
+    required=False,
+    nargs=1,
+    help="print verbose result",
+)
+
 args = parser.parse_args()
 
 if args.solve:
@@ -47,10 +59,6 @@ if args.solve:
     problem = __import__(
         file[0].split(".")[0].replace("/", "."), fromlist=[None]  # type: ignore
     ).Main
-    if problem.requires_input() and not args.input:
-        parser.error(
-            f"Problem #{args.problem[0]} requires an input file. Use --input flag."
-        )
 
     problem.solve(verbose=args.verbose)
 
@@ -84,3 +92,6 @@ if args.prepare:
 
         for line in _template.readlines():
             template.write(line.replace("# type: ignore", "").rstrip() + "\n")
+
+if args.open:
+    webbrowser.open(f"https://projecteuler.net/problem={args.open[0]}")

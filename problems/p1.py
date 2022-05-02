@@ -8,9 +8,6 @@ from fwk.problem import Problem
 
 
 class Main(Problem):
-
-    REQUIRES_INPUT = False
-
     @classmethod
     def solution(cls) -> int:
         return sum(set(range(3, 1000, 3)) | set(range(5, 1000, 5)))

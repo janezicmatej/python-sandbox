@@ -4,13 +4,6 @@ from typing import Any
 
 
 class Problem(ABC):
-
-    REQUIRES_INPUT: bool = False
-
-    @classmethod
-    def requires_input(cls) -> bool:
-        return cls.REQUIRES_INPUT
-
     @classmethod
     @abstractmethod
     def solution(cls) -> Any:

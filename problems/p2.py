@@ -12,9 +12,6 @@ from utils.fibonacci import fib_generator
 
 
 class Main(Problem):
-
-    REQUIRES_INPUT = False
-
     @classmethod
     def solution(cls) -> int:
         s = 0
