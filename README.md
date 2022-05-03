@@ -2,7 +2,6 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-green.svg)](https://www.python.org/)
-
 ---
 My project euler solutions with a simple script to automate some tasks.
 
@@ -13,24 +12,55 @@ My project euler solutions with a simple script to automate some tasks.
     ├── problems            # solutions
     ├── utils               # utils functions
     ├── README.md
-    ├── euler               # executable script
+    ├── euler.py            # executable script
     └── requirements.txt    # pip install from here
 
-### Script
+### Command Line Interface
 ```
-usage: euler [-h] [-s SOLVE] [-i INPUT] [-v] [-p PREPARE]
+usage: euler.py [-h] [--debug] {solve,prepare,open} ...
 
-project euler runner
+project euler cli
+
+positional arguments:
+  {solve,prepare,open}
+    solve               solve problem
+    prepare             prepare solution file
+    open                open problem page
 
 options:
   -h, --help            show this help message and exit
-  -s SOLVE, --solve SOLVE
-                        solve problem with given number
-  -i INPUT, --input INPUT
-                        input file
-  -v, --verbose         print verbose result
-  -p PREPARE, --prepare PREPARE
-                        prepare file for given problem number
+  --debug               print debug info
+
+command 'solve'
+usage: euler.py solve [-h] [-v] [-o] [-c] n
+
+positional arguments:
+  n              solve problem with given problem
+
+options:
+  -h, --help     show this help message and exit
+  -v, --verbose  print verbose result
+  -o, --open     open problem page
+  -c, --copy     copy solution to clipboard
+
+command 'prepare'
+usage: euler.py prepare [-h] [-f] n
+
+positional arguments:
+  n            prepare file with given problem
+
+options:
+  -h, --help   show this help message and exit
+  -f, --force  override solution file
+
+command 'open'
+usage: euler.py open [-h] n
+
+positional arguments:
+  n           open page with given problem
+
+options:
+  -h, --help  show this help message and exit
+
+
 ```
-### Todo
-- [ ] modify prepare script
