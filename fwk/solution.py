@@ -10,13 +10,15 @@ class Problem(ABC):
         pass
 
     @classmethod
-    def solve(cls, verbose: bool = False) -> None:
+    def solve(cls) -> dict[str, int | float]:
         t_start = default_timer()
         result = cls.solution()
         timed = default_timer() - t_start
-        if verbose:
-            print(f"The result [{result}] was calculated in {timed}ms time.")
-        else:
-            print(f"{result}, {timed}ms")
-        with open("solution.txt", "w") as solution:
-            solution.write(f"{result}")
+        return {"result": result, "time": timed}
+
+
+class Input(ABC):
+    @classmethod
+    @abstractmethod
+    def parse_input(cls) -> Any:
+        pass

@@ -5,7 +5,7 @@
 #
 # What is the smallest positive number that is <dfn title="divisible with no
 # remainder">evenly divisible</dfn> by all of the numbers from 1 to 20?
-from fwk.problem import Problem
+from fwk.solution import Problem
 from utils.primes import prime_factors
 from collections import defaultdict
 from math import prod
@@ -20,4 +20,4 @@ class Main(Problem):
                 if max_prime_factors[prime_factor] < power:
                     max_prime_factors[prime_factor] = power
 
-        return prod([prime**power for prime, power in max_prime_factors.items()])
+        return int(prod([prime**power for prime, power in max_prime_factors.items()]))

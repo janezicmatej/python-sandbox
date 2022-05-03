@@ -4,7 +4,7 @@
 # 6th prime is 13.
 #
 # What is the 10 001st prime number?
-from fwk.problem import Problem
+from fwk.solution import Problem
 from utils.primes import primes_to
 
 

@@ -1,0 +1,8 @@
+
+from fwk.solution import $parent_classes
+
+
+class Main($parent_classes):
+    @classmethod
+    def solution(cls) -> $return_type:
+        pass
