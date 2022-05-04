@@ -4,11 +4,12 @@
 # 6th prime is 13.
 #
 # What is the 10 001st prime number?
+from itertools import islice
 from fwk.solution import Problem
-from utils.primes import primes_to
+from utils.primes import primes
 
 
 class Main(Problem):
     @classmethod
     def solution(cls) -> int:
-        return primes_to(200000)[10000]
+        return next(islice(primes(), 10001, None))
