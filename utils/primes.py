@@ -1,5 +1,5 @@
 from itertools import accumulate, chain, cycle, count
-from typing import Generator, Iterable, Iterator
+from typing import Iterator
 
 
 def _wsieve() -> Iterator[int]:  # wheel-sieve, by Will Ness.    ideone.com/mqO25A
@@ -61,20 +61,6 @@ def prime_factors(n: int) -> dict[int, int]:
     return p_factors
 
 
-from fwk.solution import timer
-
-
-@timer
 def is_prime(n: int) -> bool:
     p_factors = prime_factors(n)
     return len(p_factors) == 1 and 1 in p_factors.values()
-
-
-@timer
-def is_prime_2(n: int) -> bool:
-    for p in primes():
-        if p == n:
-            return True
-        if p > n:
-            break
-    return False
