@@ -44,16 +44,17 @@ def prime_factors(n: int) -> dict[int, int]:
     p_factors = {}
     divided_n = n
     for prime in primes():
-        if prime**2 > n:
+        if prime > divided_n:
             break
-        if divided_n == 1 or prime**2 > n:
+        if prime**2 > divided_n:
+            p_factors[divided_n] = 1
             break
         if not divided_n % prime:
-            count = 0
+            counted = 0
             while not divided_n % prime:
-                count += 1
+                counted += 1
                 divided_n //= prime
-            p_factors[prime] = count
+            p_factors[prime] = counted
 
     if not p_factors:
         return {n: 1}
