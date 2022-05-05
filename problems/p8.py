@@ -44,8 +44,8 @@ class Main(Problem, Input):
     @classmethod
     def parse_input(cls) -> list[int]:
         numbers = []
-        with open("inputs/p8.txt") as numbers_in:
-            for line in numbers_in:
+        with open("inputs/p8.txt", "r") as read_input:
+            for line in read_input:
                 numbers += list(map(int, list(line.strip())))
 
         return numbers
