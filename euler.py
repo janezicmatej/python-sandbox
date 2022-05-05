@@ -30,6 +30,9 @@ prepare.add_argument(
 prepare.add_argument(
     "-f", "--force", dest="force", action="store_true", help="override solution file"
 )
+prepare.add_argument(
+    "-i", "--input", dest="input", action="store_true", help="has input"
+)
 
 open_page = subparsers.add_parser("open", help="open problem page")
 open_page.add_argument(
@@ -50,7 +53,9 @@ match args.command:
     case "prepare":
         try:
             html_parser.prepare_solution_file(
-                problem_number=args.problem[0], forced=args.force
+                problem_number=args.problem[0],
+                forced=args.force,
+                input_subclass=args.input,
             )
         except FileExistsError as e:
             parser.error(str(e))

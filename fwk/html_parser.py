@@ -4,7 +4,9 @@ from string import Template
 from bs4 import BeautifulSoup
 
 
-def prepare_solution_file(problem_number: int, forced: bool = False) -> None:
+def prepare_solution_file(
+    problem_number: int, forced: bool = False, input_subclass: bool = False
+) -> None:
     if glob.glob(f"problems/p{problem_number}.py") and not forced:
         raise FileExistsError("There is already a file for that problem")
     parsed_html = BeautifulSoup(
@@ -20,15 +22,44 @@ def prepare_solution_file(problem_number: int, forced: bool = False) -> None:
             )
 
     template_dict: dict[str, str] = {
-        "return_type": "int",
-        "parent_classes": "Problem" if not href else "Problem, Input",
+        "parent_classes": "Problem"
+        if not (href or input_subclass)
+        else "Problem, Input",
     }
+
+    lines: list[str] = []
+    for line in problem_body.text.split("\n"):
+        if len(line) < 86:
+            lines.append(line)
+            continue
+        current_line: list[str] = []
+        for word in line.split():
+            if len(" ".join(current_line + [word])) > 86:
+                lines.append(" ".join(current_line))
+                current_line = [word]
+            else:
+                current_line += [word]
+        lines.append(" ".join(current_line))
+
+    if not lines[-1]:
+        lines = lines[:-1]
+
     with open(f"problems/p{problem_number}.py", "w") as template, open(
-        "fwk/template.txt", "r"
-    ) as _template:
+        "fwk/main_template.txt", "r"
+    ) as _template, open("fwk/input_template.txt", "r") as input_template:
         print(f"# Problem number {problem_number}", file=template)
-        for line in problem_body.text.split("\n"):
-            print("# " + line, file=template)
+        for line in lines:
+            if line:
+                print("# " + line, file=template)
+            else:
+                print("#", file=template)
+
         src = Template(_template.read())
         result = src.substitute(template_dict)
         print(result, file=template)
+
+        if href or input_subclass:
+            print(file=template)
+            input_src = Template(input_template.read())
+            input_result = input_src.substitute(template_dict)
+            print(input_result, file=template)

@@ -14,7 +14,7 @@ def solve(problem_number: int, verbose: bool, copy: bool, open_page: bool) -> No
     )
     result, time = problem.solve().values()
     if verbose:
-        print(f"The result [{result}] was calculated in {time}ms time.")
+        print(f"The result {result} was calculated in {time}ms time.")
     else:
         print(f"{result}, {time}ms")
     if copy:
