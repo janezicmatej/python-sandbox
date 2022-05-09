@@ -16,7 +16,7 @@ def solve(problem_number: int, verbose: bool, copy: bool, open_page: bool) -> No
     if verbose:
         print(f"The result {result} was calculated in {time}ms time.")
     else:
-        print(f"{result}, {time}ms")
+        print(f"#{problem_number} - time: {'{:f}'.format(time)}ms, result: {result}")
     if copy:
         pyperclip.copy(result)
     if open_page:
@@ -40,8 +40,7 @@ def solve_all() -> None:
         problem_number = int(file.split("/")[-1][1:-3])
         ordered_results.append([problem_number, result, time])
 
-    for problem_number, result, time in sorted(ordered_results):
-        print(
-            f"The result to problem number {problem_number} was {result}. "
-            f"It was calculated in {time}ms time."
-        )
+    max_len = len(str(max([i[0] for i in ordered_results])))
+    for p_n, r, t in sorted(ordered_results):
+        p_n_str = "0" * (max_len - len(str(p_n))) + str(p_n)
+        print(f"#{p_n_str} - time: {'{:f}'.format(t)}ms, result: {r}")
