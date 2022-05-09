@@ -34,4 +34,4 @@ class Main(Problem):
         for i in range(1, 1000000):
             cls.length(i)
 
-        return max(cls.lengths, key=cls.lengths.get)
+        return max(cls.lengths.items(), key=lambda x: x[0])[0]
