@@ -9,6 +9,8 @@ parser.add_argument("--debug", action="store_true", help="print debug info")
 
 subparsers = parser.add_subparsers(dest="command")
 
+solve_all = subparsers.add_parser("solve_all", help="solve all problems")
+
 solve = subparsers.add_parser("solve", help="solve problem")
 solve.add_argument(
     "problem", metavar="n", type=int, nargs=1, help="solve problem with given problem"
@@ -42,6 +44,9 @@ open_page.add_argument(
 args = parser.parse_args()
 
 match args.command:
+    case "solve_all":
+        solver.solve_all()
+
     case "solve":
         solver.solve(
             problem_number=args.problem[0],

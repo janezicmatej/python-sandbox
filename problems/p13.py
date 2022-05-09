@@ -109,13 +109,8 @@ from fwk.solution import Problem, Input
 class Main(Problem, Input):
     @classmethod
     def solution(cls) -> int:
-        return int(str(sum(cls.parse_input()))[:10])
+        return int(str(sum(cls.parse_input(13)))[:10])
 
     @classmethod
-    def parse_input(cls) -> list[int]:
-        number_list = []
-        with open("inputs/p13.txt", "r") as read_input:
-            for line in read_input:
-                number_list.append(int(line.strip()))
-
-        return number_list
+    def parse_line(cls, line: str) -> int:
+        return int(line.strip())

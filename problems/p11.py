@@ -35,7 +35,7 @@ class Main(Problem, Input):
     @classmethod
     def solution(cls) -> int:
         directions = [(1, 0), (1, -1), (0, -1), (-1, -1)]
-        number_grid = cls.parse_input()
+        number_grid = cls.parse_input(11)
         max_prod = 0
         for x in range(len(number_grid[0])):
             for y in range(len(number_grid)):
@@ -60,10 +60,5 @@ class Main(Problem, Input):
         return max_prod
 
     @classmethod
-    def parse_input(cls) -> list[list[int]]:
-        number_grid = []
-        with open("inputs/p11.txt", "r") as read_input:
-            for line in read_input:
-                number_grid.append(list(map(int, list(line.strip().split()))))
-
-        return number_grid
+    def parse_line(cls, line: str) -> list[int]:
+        return list(map(int, list(line.strip().split())))

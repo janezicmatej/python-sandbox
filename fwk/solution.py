@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, TypedDict, Callable, TypeVar, cast, ParamSpec
+from typing import Any, TypedDict, Callable, TypeVar, cast, ParamSpec, Generic
 import time
 
 
@@ -10,6 +10,7 @@ class Solution(TypedDict):
 
 F = TypeVar("F", bound=Callable[..., Any])
 P = ParamSpec("P")
+T = TypeVar("T")
 
 
 def timer(fun: F) -> Callable[[F], Solution]:
@@ -33,8 +34,17 @@ class Problem(ABC):
         return cls.solution()
 
 
-class Input(ABC):
+class Input(ABC, Generic[T]):
     @classmethod
     @abstractmethod
-    def parse_input(cls) -> Any:
+    def parse_line(cls, line: str) -> T:
         pass
+
+    @classmethod
+    def parse_input(cls, problem_number: int) -> list[T]:
+        lines = []
+        with open(f"inputs/p{problem_number}.txt", "r") as read_input:
+            for line in read_input:
+                lines.append(cls.parse_line(line))
+
+        return lines

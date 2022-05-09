@@ -17,6 +17,9 @@ class Main(Problem):
         p = inflect.engine()
         lengths_sum = 0
         for i in range(1, 1001):
-            lengths_sum += len(p.number_to_words(i).replace(" ", "").replace("-", ""))
+            word = p.number_to_words(i)
+            if not isinstance(word, str):
+                continue
+            lengths_sum += len(word.replace(" ", "").replace("-", ""))
 
         return lengths_sum

@@ -33,7 +33,8 @@ import math
 class Main(Problem, Input):
     @classmethod
     def solution(cls) -> int:
-        numbers = cls.parse_input()
+        numbers_grid = cls.parse_input(8)
+        numbers = [i for line in numbers_grid for i in line]
         max_prod = 0
         for i in range(len(numbers) - 13):
             current_prod = int(math.prod(numbers[i : i + 13]))
@@ -42,10 +43,5 @@ class Main(Problem, Input):
         return max_prod
 
     @classmethod
-    def parse_input(cls) -> list[int]:
-        numbers = []
-        with open("inputs/p8.txt", "r") as read_input:
-            for line in read_input:
-                numbers += list(map(int, list(line.strip())))
-
-        return numbers
+    def parse_line(cls, line: str) -> list[int]:
+        return list(map(int, list(line.strip())))
