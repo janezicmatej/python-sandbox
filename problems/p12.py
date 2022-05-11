@@ -14,7 +14,7 @@
 # What is the value of the first triangle number to have over five hundred divisors?
 from fwk.solution import Problem
 from typing import Iterator
-from utils.extended_math import factors, natural_numbers
+from utils.extended_math import divisors, natural_numbers
 
 
 def triangle_numbers() -> Iterator[int]:
@@ -29,7 +29,7 @@ class Main(Problem):
     def solution(cls) -> int:
         result = 0
         for t_number in triangle_numbers():
-            if len(factors(t_number)) > 500:
+            if len(divisors(t_number)) > 500:
                 result = t_number
                 break
 

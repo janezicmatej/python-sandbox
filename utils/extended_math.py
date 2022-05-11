@@ -24,7 +24,7 @@ def pythagorean_triplets(limit: int) -> list[tuple[int, int, int]]:
     return triplets
 
 
-def factors(n: int, sort: bool = False) -> list[int]:
+def divisors(n: int, sort: bool = False, proper: bool = False) -> list[int]:
     p_factors = prime_factors(n)
     listed = []
     for k, v in p_factors.items():
@@ -36,6 +36,8 @@ def factors(n: int, sort: bool = False) -> list[int]:
             s.add(comb)
 
     prod_combs = [math.prod(comb) for comb in s]
+    if proper:
+        prod_combs.remove(n)
     if sort:
         return sorted(prod_combs)
     return prod_combs
