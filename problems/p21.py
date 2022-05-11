@@ -18,11 +18,11 @@ class Main(Problem):
     def solution(cls) -> int:
         divisor_sum = defaultdict(int)
         count = 0
-        for i in range(1, 1000001):
+        for i in range(1, 10001):
             if divisor_sum[i]:
                 continue
             j = divisor_sum[i] = sum(divisors(i, proper=True))
-            if j > 1000001 or j < 1:
+            if j > 10001 or j < 1:
                 continue
             if not divisor_sum[j]:
                 divisor_sum[j] = sum(divisors(j, proper=True))
