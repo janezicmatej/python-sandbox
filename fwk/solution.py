@@ -45,6 +45,6 @@ class Input(ABC, Generic[T]):
         lines = []
         with open(f"inputs/p{problem_number}.txt", "r") as read_input:
             for line in read_input:
-                lines.append(cls.parse_line(line))
+                lines.append(cls.parse_line(line.strip()))
 
         return lines
