@@ -9,9 +9,24 @@
 # d(284) = 220.
 # Evaluate the sum of all the amicable numbers under 10000.
 from fwk.solution import Problem
+from collections import defaultdict
+from utils.extended_math import divisors
 
 
 class Main(Problem):
     @classmethod
     def solution(cls) -> int:
-        pass
+        divisor_sum = defaultdict(int)
+        count = 0
+        for i in range(1, 1000001):
+            if divisor_sum[i]:
+                continue
+            j = divisor_sum[i] = sum(divisors(i, proper=True))
+            if j > 1000001 or j < 1:
+                continue
+            if not divisor_sum[j]:
+                divisor_sum[j] = sum(divisors(j, proper=True))
+            if divisor_sum[j] == i and i != j:
+                count += i + j
+
+        return count
