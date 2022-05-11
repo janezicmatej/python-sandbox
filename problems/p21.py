@@ -16,7 +16,7 @@ from utils.extended_math import divisors
 class Main(Problem):
     @classmethod
     def solution(cls) -> int:
-        divisor_sum = defaultdict(int)
+        divisor_sum: dict[int, int] = defaultdict(int)
         count = 0
         for i in range(1, 10001):
             if divisor_sum[i]:
