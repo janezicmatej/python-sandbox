@@ -13,8 +13,4 @@ from fwk.solution import Problem
 class Main(Problem):
     @classmethod
     def solution(cls) -> int:
-        count = 28433
-        for _ in range(7830457):
-            count = (count * 2) % (10**10)
-
-        return count + 1
+        return (28433 * (2**7830457) + 1) % (10**10)
