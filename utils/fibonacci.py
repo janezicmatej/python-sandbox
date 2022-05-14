@@ -11,7 +11,7 @@ def recursion_extender(depth: int = 1000) -> Callable[[F], Callable]:
     sys.setrecursionlimit(depth)
 
     def wrap(fun: F) -> Callable[[F], Callable]:
-        def inner(*args: P.args, **kwargs: P.kwargs) -> Callable:
+        def inner(*args: P.args, **kwargs: P.kwargs) -> Any:
             return fun(*args, **kwargs)
 
         return cast(F, inner)

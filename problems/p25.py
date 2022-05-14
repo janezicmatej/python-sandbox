@@ -24,6 +24,10 @@ from utils.fibonacci import fib_generator
 class Main(Problem):
     @classmethod
     def solution(cls) -> int:
+        c = 0
         for count, fib in enumerate(fib_generator(), 1):
             if len(str(fib)) == 1000:
-                return count
+                c = count
+                break
+
+        return c
