@@ -1,66 +1,20 @@
-# Project euler and runner script
+# Python sandbox
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Python 3.11](https://img.shields.io/badge/python-3.10-green.svg)](https://www.python.org/)
 ---
-My project euler solutions with a simple script to automate some tasks.
+While i originally though this would be a magnificent return to my projectEuler journey I quickly realised I would currently much rather spend time playing around with GitHub actions, python tools like
+- black
+- isort
+- pylint
+- pydantic
 
-### Project structure
-    .
-    ├── fwk                 # framework
-    ├── inputs              # input files
-    ├── problems            # solutions
-    ├── utils               # utils functions
-    ├── README.md
-    ├── euler.py            # executable script
-    └── requirements.txt    # pip install from here
+- and other things such as developing some tools in python that I think are cool. Basically from now on this will be my python sandbox repo.
 
-### Command Line Interface
-```
-usage: euler.py [-h] [--debug] {solve,prepare,open} ...
+I will probably still solve some problems here or there but not as actively as I thought initially.
 
-project euler cli
-
-positional arguments:
-  {solve,prepare,open}
-    solve               solve problem
-    prepare             prepare solution file
-    open                open problem page
-
-options:
-  -h, --help            show this help message and exit
-  --debug               print debug info
-
-command 'solve'
-usage: euler.py solve [-h] [-v] [-o] [-c] n
-
-positional arguments:
-  n              solve problem with given problem
-
-options:
-  -h, --help     show this help message and exit
-  -v, --verbose  print verbose result
-  -o, --open     open problem page
-  -c, --copy     copy solution to clipboard
-
-command 'prepare'
-usage: euler.py prepare [-h] [-f] n
-
-positional arguments:
-  n            prepare file with given problem
-
-options:
-  -h, --help   show this help message and exit
-  -f, --force  override solution file
-
-command 'open'
-usage: euler.py open [-h] n
-
-positional arguments:
-  n           open page with given problem
-
-options:
-  -h, --help  show this help message and exit
-
-
-```
+Currently, TODO list includes:
+- [ ] configure pylint
+- [ ] configure pydantic
+- [ ] play around with GitHub actions
+- [ ] improve on the runner script
