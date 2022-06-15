@@ -9,7 +9,7 @@ While i originally though this would be a magnificent return to my projectEuler 
 - pylint
 - pydantic
 
-- and other things such as developing some tools in python that I think are cool. Basically from now on this will be my python sandbox repo.
+and other things such as developing some tools in python that I think are cool. Basically from now on this will be my python sandbox repo.
 
 I will probably still solve some problems here or there but not as actively as I thought initially.
 
